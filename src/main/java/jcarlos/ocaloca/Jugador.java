@@ -1,15 +1,23 @@
-
 package jcarlos.ocaloca;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Jugador {
-    
+
+    // Atributo de clase
+    private static Random r = new Random();
+    // Atributos de instancia
     private final String nombre;
+    private int casillaActual; // Casilla en la que se encuentra
+    private int turnosSinJugar;
+    private boolean tiraOtraVez;
+    private int tirada; // Para guardar lo que saca en los dados
 
     public Jugador(String nombre) {
-        this.nombre = nombre;       
+        this.nombre = nombre;
     }
+
 
     @Override
     public int hashCode() {
@@ -39,4 +47,37 @@ public class Jugador {
     public String getNombre() {
         return nombre;
     }
+
+    public int getCasillaActual() {
+        return casillaActual;
+    }
+
+    public void setCasillaActual(int casillaActual) {
+        this.casillaActual = casillaActual;
+    }
+
+    public int getTurnosSinJugar() {
+        return turnosSinJugar;
+    }
+
+    public void setTurnosSinJugar(int turnosSinJugar) {
+        this.turnosSinJugar = turnosSinJugar;
+    }
+
+    public boolean TiraOtraVez() {
+        return tiraOtraVez;
+    }
+
+    public void setTiraOtraVez(boolean tiraOtraVez) {
+        this.tiraOtraVez = tiraOtraVez;
+    }
+
+    public int getTirada() {
+        return tirada;
+    }
+
+    public void setTirada(int tirada) {
+        this.tirada = tirada;
+    }
+    
 }
