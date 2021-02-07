@@ -12,12 +12,16 @@ public class Jugador {
     private int casillaActual; // Casilla en la que se encuentra
     private int turnosSinJugar;
     private boolean tiraOtraVez;
-    private int tirada; // Para guardar lo que saca en los dados
+    private int tirada; // Para guardar lo que saca en el dado
 
     public Jugador(String nombre) {
         this.nombre = nombre;
     }
 
+    // Tirada del dado. Guarda el valor en el atributo correspondiente
+    public void tirarDado() {
+        this.tirada = r.nextInt(6) + 1;
+    }
 
     @Override
     public int hashCode() {
@@ -79,5 +83,5 @@ public class Jugador {
     public void setTirada(int tirada) {
         this.tirada = tirada;
     }
-    
+
 }
