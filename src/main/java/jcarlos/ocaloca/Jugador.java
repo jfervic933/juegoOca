@@ -16,6 +16,7 @@ public class Jugador {
 
     public Jugador(String nombre) {
         this.nombre = nombre;
+        this.casillaActual = 1;
     }
 
     // Tirada del dado. Guarda el valor en el atributo correspondiente
