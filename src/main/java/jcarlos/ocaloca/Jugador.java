@@ -22,6 +22,21 @@ public class Jugador {
     public void tirarDado() {
         this.tirada = r.nextInt(6) + 1;
     }
+    
+    // Mira la tirada y mueve a la nueva casilla. Controla el rebote   
+    public void mover(int movimiento){
+        this.casillaActual+=movimiento;
+        // Hay que controlar que no se salga del tablero
+        if (this.casillaActual>=Tablero.TOTAL_CASILLAS){
+            // Rebote
+            int rebote = this.casillaActual - (Tablero.TOTAL_CASILLAS - 1);
+            this.casillaActual =  Tablero.TOTAL_CASILLAS - 1 - rebote;
+        }
+    }
+    
+    public boolean ganaPartida(){
+        return this.casillaActual == Tablero.TOTAL_CASILLAS - 1;
+    }
 
     @Override
     public int hashCode() {
