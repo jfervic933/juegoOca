@@ -7,6 +7,7 @@ public class Tablero {
     private Casilla[] tablero;
     // Sólo hay 63 casillas útiles, la casilla 0 se ignora
     public static final int TOTAL_CASILLAS = 64;
+    public static final int CASILLA_POZO = 31;
 
     public Tablero() {
         tablero = new Casilla[TOTAL_CASILLAS];
@@ -78,6 +79,15 @@ public class Tablero {
                     tablero[i] = new Casilla(i, TipoCasilla.NORMAL);
             }
         }
+    }
+    
+    public boolean hayJugadoresDespuesPozo(){
+        for (int i = CASILLA_POZO+1; i<TOTAL_CASILLAS;i++){
+            if (tablero[i].getJugadoresCasilla().size()>0){
+                return true;
+            }
+        }
+        return false;
     }
 
     public Casilla getCasilla(int numeroCasilla){
