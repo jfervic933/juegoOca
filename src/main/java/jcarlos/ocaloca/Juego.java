@@ -1,5 +1,7 @@
 package jcarlos.ocaloca;
 
+import java.util.Arrays;
+
 public class Juego {
 
     private final Tablero tablero;
@@ -27,6 +29,31 @@ public class Juego {
 
         // Imprime el estado del tablero inicialmente
         Vista.mostrarTablero(juego.getTablero());
+        
+        Jugador jugador;
+        TipoCasilla casillaJugador;
+
+        do {
+            // Coge al jugador que le toca
+            jugador = cj.getJugadorSiguiente();
+            // Guarda el tipo de casilla en la que se encuentra el jugador
+            casillaJugador = tablero.getCasilla(jugador.getCasillaActual()).getTipo();
+            // Si está en el pozo mira si hay otros por delante
+            if ((casillaJugador != TipoCasilla.POZO)
+               || ((casillaJugador == TipoCasilla.POZO) && tablero.hayJugadoresDespuesPozo())) {
+                // Quita al jugador de la casilla actual del tablero
+                juego.getTablero().getCasilla(jugador.getCasillaActual()).quitarJugador(jugador);
+                // Juega su turno
+                jugador.jugarTurno(tablero);
+                // Coloca al jugador en la casilla que le ha tocado
+                juego.getTablero().getCasilla(jugador.getCasillaActual()).ponerJugador(jugador);
+                // Muestra el resultado
+                Vista.mostrarTablero(juego.tablero);
+            }
+
+        } while (!jugador.ganaPartida()); // Si el jugador no gana, repite con otro
+
+        System.out.println("\n\n --- El ganador es: " + jugador.getNombre());
 
     }
 
